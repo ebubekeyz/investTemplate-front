@@ -41,7 +41,7 @@ const UpdatePassword = () => {
       <Breadcrumb
         text1="Home"
         url1="/"
-        text2="UpdatePassword"
+        text2="Change Password"
         url2="/UpdatePassword"
       />
       <SectionTitle />

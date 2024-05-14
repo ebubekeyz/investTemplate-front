@@ -52,6 +52,7 @@ const Settings = () => {
       />
       <SectionTitle />
       <FormInput label="Name" name="name" defaultValue={user.name} />
+      <FormInput label="Email" name="email" defaultValue={user.email} />
 
       <FormSelect
         label="Wallet Name"
