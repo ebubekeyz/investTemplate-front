@@ -15,10 +15,15 @@ import {
   Dashboard,
   Investment,
   Withdraw,
+  Pay,
+  UpdatePassword,
 } from './pages';
 
 import { action as loginAction } from './pages/Login';
 import { action as registerAction } from './pages/Register';
+import { action as settingsAction } from './pages/Settings';
+import { action as updatePasswordAction } from './pages/UpdatePassword';
+import { action as payAction } from './pages/Pay';
 
 import { store } from './store';
 import { ErrorElement } from './components';
@@ -46,10 +51,20 @@ const router = createBrowserRouter([
       { path: 'about', element: <About /> },
       { path: 'terms', element: <Terms /> },
       { path: 'privacy', element: <Privacy /> },
-      { path: 'settings', element: <Settings /> },
+      {
+        path: 'settings',
+        element: <Settings />,
+        action: settingsAction(store),
+      },
       { path: 'dashboard', element: <Dashboard /> },
       { path: 'investment', element: <Investment /> },
       { path: 'withdraw', element: <Withdraw /> },
+      {
+        path: 'updatePassword',
+        element: <UpdatePassword />,
+        action: updatePasswordAction(store),
+      },
+      { path: 'pay', element: <Pay />, action: payAction(store) },
     ],
   },
 

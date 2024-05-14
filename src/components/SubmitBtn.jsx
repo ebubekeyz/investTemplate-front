@@ -5,7 +5,7 @@ const SubmitBtn = ({ text }) => {
   const isSubmitting = navigation.state === 'submitting';
   return (
     <button
-      className="btn btn-primary w-full btn-block capitalize"
+      className="btn btn-primary btn-block capitalize mt-2"
       disabled={isSubmitting}
     >
       {isSubmitting ? (

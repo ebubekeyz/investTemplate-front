@@ -8,5 +8,9 @@ export { default as FormSelect } from './FormSelect';
 export { default as FormRange } from './FormRange';
 export { default as SubmitBtn } from './SubmitBtn';
 export { default as TextAreaInput } from './TextAreaInput';
-
+export { default as Pricing } from './Pricing';
+export { default as Title } from './Title';
 export { default as Hero2 } from './Hero2';
+export { default as FormInputFile } from './FormInputFile';
+export { default as Breadcrumb } from './Breadcrumb';
+export { default as SectionTitle } from './SectionTitle';

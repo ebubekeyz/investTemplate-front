@@ -30,9 +30,7 @@ const Hero2 = () => {
                   <img src={image} alt={name} className="w-80" />
                 </div>
                 <div className="animate-pulse md:animate-bounce text-center md:text-left my-32 md:my-0">
-                  <h1 className="text-4xl font-medium tracking-wide">
-                    {title}
-                  </h1>
+                  <h1 className="text-4xl font-bold tracking-wide">{title}</h1>
                   <p className="leading-loose text-xl">{quote}</p>
                   <Link
                     to={link}
