@@ -23,8 +23,6 @@ export const action = async ({ request }) => {
 };
 
 const Register = () => {
-  const user = useSelector((state) => state.userState.user);
-
   return (
     <section className="h-screen grid place-items-center">
       <Form
@@ -34,12 +32,7 @@ const Register = () => {
         <h4 className="text-center text-3xl font-bold">Register</h4>
         <FormInput type="text" label="name" name="name" />
         <FormInput type="email" label="email" name="email" />
-        <FormInput
-          type="text"
-          label="referral Id"
-          name="ref"
-          defaultValue={user.ref}
-        />
+        <FormInput type="text" label="referral Id" name="ref" />
         <FormInput type="password" label="password" name="password" />
         <div className="mt-4">
           <SubmitBtn text="register" />

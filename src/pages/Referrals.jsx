@@ -1,29 +1,30 @@
 import { toast } from 'react-toastify';
 import { customFetch } from '../utils';
+
 import {
   Breadcrumb,
   ComplexPaginationContainer,
-  PackageComponent,
-  PackageFilters,
+  Filters,
+  ReferralComponent,
 } from '../components';
 import { redirect } from 'react-router-dom';
+import { addReferral } from '../features/package/packageSlice';
 
-const investmentQuery = (queryParams, id, token) => {
-  const { date, amount, packagePlan, page } = queryParams;
+const referralQuery = (queryParams, id) => {
+  const { name, email, ref, date, balance, page } = queryParams;
   return {
     queryKey: [
-      'Investment',
+      'referrals',
+      name ?? '',
+      email ?? '',
+      ref ?? '',
       date ?? '',
-      amount ?? '',
-      packagePlan ?? '',
+      balance ?? '',
       page ?? 1,
     ],
     queryFn: () =>
-      customFetch(`/package?status=paid`, {
+      customFetch(`/auth?ref=${id}&sort=latest`, {
         params: queryParams,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       }),
   };
 };
@@ -41,24 +42,25 @@ export const loader =
     ]);
 
     const resp = await queryClient.ensureQueryData(
-      investmentQuery(params, user._id, user.token)
+      referralQuery(params, user._id)
     );
 
-    const packages = resp.data.packages;
+    store.dispatch(addReferral(resp.data.users));
+    const referral = resp.data.users;
 
     const meta = resp.data.meta;
 
-    return { packages, meta, params };
+    return { referral, meta, params };
   };
 
-const Investment = () => {
+const Referrals = () => {
   return (
     <div className="align-element my-8">
-      <Breadcrumb text1="Home" url1="/" text2="Investment" url2="/investment" />
-      <PackageFilters />
-      <PackageComponent />
+      <Breadcrumb text1="Home" url1="/" text2="Referral" url2="/referrals" />
+      <Filters />
+      <ReferralComponent />
       <ComplexPaginationContainer />
     </div>
   );
 };
-export default Investment;
+export default Referrals;

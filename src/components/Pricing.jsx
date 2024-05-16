@@ -19,6 +19,7 @@ const Pricing = () => {
       amount: 50,
       max: 3000,
       percent: 5,
+      duration: 24,
       days: 1,
       badge: 'text-5xl text-cyan-400',
       handle: (plan, amount, max, percent, days) => {
@@ -42,6 +43,7 @@ const Pricing = () => {
       plan: 'T-H2 Plan',
       amount: 3100,
       max: 7000,
+      duration: '2 Days',
       percent: 12,
       days: 2,
       badge: 'text-5xl text-gray-700',
@@ -67,6 +69,7 @@ const Pricing = () => {
       amount: 7100,
       max: 20000,
       percent: 18,
+      duration: '72Hrs',
       days: 3,
       badge: 'text-5xl text-cyan-400',
       handle: (plan, amount, max, percent, days) => {
@@ -91,6 +94,7 @@ const Pricing = () => {
       amount: 20500,
       max: 40000,
       percent: 24,
+      durtion: '96Hrs',
       days: 4,
       badge: 'text-5xl text-cyan-400',
       handle: (plan, amount, max, percent, days) => {
@@ -171,6 +175,7 @@ const Pricing = () => {
           color,
           identity,
           badge,
+          duration,
         } = pac;
         return (
           <div className={color} key={id} id={identity}>
@@ -191,7 +196,7 @@ const Pricing = () => {
 
             <span className="">€{max} Maximum</span>
 
-            <span className="">Duration: </span>
+            <span className="">{duration ? `Duration: ${duration}` : ''}</span>
 
             <button
               type="button"

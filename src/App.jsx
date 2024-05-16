@@ -1,6 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { calculatePercentage } from './features/package/packageSlice';
+import { calculateReferral } from './features/package/packageSlice';
+import { updateBalance } from './features/package/packageSlice';
+import { calculateWithdraw } from './features/package/packageSlice';
 
 import {
   HomeLayout,
@@ -17,16 +21,29 @@ import {
   Withdraw,
   Pay,
   UpdatePassword,
+  Referrals,
+  Pricing,
 } from './pages';
 
+import { loader as referralLoader } from './pages/Referrals';
+import { loader as PackageLoader } from './pages/Investment';
+import { loader as dashboardLoader } from './pages/Dashboard';
+import { loader as withdrawLoader } from './pages/Withdraw';
+import { loader as payLoader } from './pages/Pay';
+import { loader as settingsLoader } from './pages/Settings';
+import { loader as updatePasswordLoader } from './pages/UpdatePassword';
+
 import { action as loginAction } from './pages/Login';
+import { action as withdrawAction } from './components/Withdrawal';
 import { action as registerAction } from './pages/Register';
-import { action as settingsAction } from './pages/Settings';
-import { action as updatePasswordAction } from './pages/UpdatePassword';
-import { action as payAction } from './pages/Pay';
+import { action as settingsAction } from './components/Settings';
+import { action as updatePasswordAction } from './components/UpdatePassword';
+import { action as payAction } from './components/Pay';
 
 import { store } from './store';
 import { ErrorElement } from './components';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,17 +71,46 @@ const router = createBrowserRouter([
       {
         path: 'settings',
         element: <Settings />,
+        loader: settingsLoader(store),
         action: settingsAction(store),
       },
-      { path: 'dashboard', element: <Dashboard /> },
-      { path: 'investment', element: <Investment /> },
-      { path: 'withdraw', element: <Withdraw /> },
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
+        loader: dashboardLoader(store, queryClient),
+      },
+      {
+        path: 'investment',
+        element: <Investment />,
+        loader: PackageLoader(store, queryClient),
+      },
+      {
+        path: 'withdraw',
+        element: <Withdraw />,
+        loader: withdrawLoader(store),
+        action: withdrawAction(store),
+      },
+      {
+        path: 'referrals',
+        element: <Referrals />,
+        loader: referralLoader(store, queryClient),
+      },
       {
         path: 'updatePassword',
         element: <UpdatePassword />,
+        loader: updatePasswordLoader(store),
         action: updatePasswordAction(store),
       },
-      { path: 'pay', element: <Pay />, action: payAction(store) },
+      {
+        path: 'pricing',
+        element: <Pricing />,
+      },
+      {
+        path: 'pay',
+        element: <Pay />,
+        loader: payLoader(store),
+        action: payAction(store),
+      },
     ],
   },
 
@@ -83,6 +129,15 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userState.user);
+
+  useEffect(() => {
+    dispatch(calculatePercentage());
+    dispatch(calculateReferral());
+    dispatch(updateBalance());
+    dispatch(calculateWithdraw());
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />

@@ -11,13 +11,12 @@ export const customFetch = axios.create({
 });
 
 export const formatPrice = (price) => {
-  const dollarAmount = new Intl.NumberFormat('en-NG', {
+  const dollarsAmount = new Intl.NumberFormat('en-DE', {
     style: 'currency',
-    currency: 'NGN',
-  }).format((price / 1).toFixed(2));
-  return dollarAmount;
+    currency: 'EUR',
+  }).format((price / 100).toFixed(2));
+  return dollarsAmount;
 };
-
 export const list = [
   {
     id: nanoid(),

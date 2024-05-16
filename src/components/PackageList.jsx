@@ -2,12 +2,15 @@ import { useLoaderData } from 'react-router-dom';
 import day from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 day.extend(advancedFormat);
-
+import moment from 'moment';
 import { formatPrice } from '../utils';
+import { useSelector } from 'react-redux';
 
 const PackageList = () => {
   const { meta, packages } = useLoaderData();
   const user = useSelector((state) => state.userState.user);
+  const profit = useSelector((state) => state.packageState.profit);
+
   return (
     <div className="mt-8">
       <h4 className="mb-4">
@@ -18,11 +21,10 @@ const PackageList = () => {
           {/* head */}
           <thead>
             <tr>
-              <th>Name</th>
               <th>Plan</th>
               <th>Amount</th>
               <th className="hidden sm:block">Date</th>
-              <th className="hidden sm:block">Payment Date</th>
+              <th>Payment Date</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -33,21 +35,41 @@ const PackageList = () => {
                 _id,
                 amount,
                 coin,
-                package: { plan: plan, percent: percent, days: days },
+                package: packs,
                 createdAt,
+                updatedAt,
                 status,
               } = pack;
-              const date = day(createdAt).format('hh:mm a - MMM Do, YYYY');
+              const date = day(createdAt).format('MMM Do');
+              if (profit === false) {
+                status = 'Active';
+              } else if (profit === true) {
+                status = 'Expired';
+              }
 
               return (
                 <tr key={_id}>
-                  <td className="capitalize">{user.name}</td>
-                  <td>{plan}</td>
+                  {packs.map((item) => {
+                    return <td>{item.plan}</td>;
+                  })}
+
                   <td>{formatPrice(amount)}</td>
 
                   <td className="hidden sm:block">{date}</td>
-                  <td></td>
-                  <td>{status}</td>
+                  {packs.map((item) => {
+                    return (
+                      <td>
+                        {moment(updatedAt).add(item.days, 'days').calendar()}
+                      </td>
+                    );
+                  })}
+                  <td
+                    className={
+                      status === 'Active' ? 'text-green-600' : 'text-rose-500'
+                    }
+                  >
+                    {status}
+                  </td>
                 </tr>
               );
             })}

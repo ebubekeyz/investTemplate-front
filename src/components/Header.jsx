@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from '../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
+import { clearPackage } from '../features/package/packageSlice';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Header = () => {
     navigate('/');
 
     dispatch(logoutUser());
+    dispatch(clearPackage());
     queryClient.removeQueries();
   };
 
@@ -23,7 +25,7 @@ const Header = () => {
       <div className="align-element flex justify-center sm:justify-end">
         {user ? (
           <div className="flex gap-x-2 sm:gap-x-8 items-center">
-            <p className="text-xs sm:text-sm">{user.name}</p>
+            <p className="text-xs sm:text-sm capitalize">{user.name}</p>
             <button
               className="btn btn-xs btn-outline border-l-cyan-400 border-t-cyan-400 text-slate-300"
               onClick={handleLogout}

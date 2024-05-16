@@ -24,7 +24,7 @@ export const action =
       // } else {
       //   return redirect('/');
       // }
-      return redirect('/');
+      return redirect('/dashboard');
     } catch (error) {
       console.log(error);
       const errorMessage =

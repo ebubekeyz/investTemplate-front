@@ -11,4 +11,6 @@ export { default as Withdraw } from './Withdraw';
 export { default as Investment } from './Investment';
 export { default as Dashboard } from './Dashboard';
 export { default as Pay } from './Pay';
+export { default as Pricing } from './Pricing';
 export { default as UpdatePassword } from './UpdatePassword';
+export { default as Referrals } from './Referrals';

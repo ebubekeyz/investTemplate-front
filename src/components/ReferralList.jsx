@@ -5,13 +5,12 @@ day.extend(advancedFormat);
 
 import { formatPrice } from '../utils';
 
-const PackageList = () => {
-  const { meta, packages } = useLoaderData();
-  const user = useSelector((state) => state.userState.user);
+const ReferralList = () => {
+  const { meta, referral } = useLoaderData();
   return (
     <div className="mt-8">
       <h4 className="mb-4">
-        Total package{packages.length > 0 ? 's' : ''}: {packages.length}
+        Total referral{referral.length > 0 ? 's' : ''}: {referral.length}
       </h4>
       <div className="overflow-x-auto">
         <table className="table table-zebra">
@@ -19,35 +18,36 @@ const PackageList = () => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Plan</th>
-              <th>Amount</th>
+              <th>Email</th>
+              <th>Balance</th>
               <th className="hidden sm:block">Date</th>
-              <th className="hidden sm:block">Payment Date</th>
               <th>Status</th>
             </tr>
           </thead>
 
           <tbody>
-            {packages.map((pack) => {
-              let {
-                _id,
-                amount,
-                coin,
-                package: { plan: plan, percent: percent, days: days },
-                createdAt,
-                status,
-              } = pack;
+            {referral.map((refer) => {
+              let { _id, name, email, balance, status, createdAt } = refer;
               const date = day(createdAt).format('hh:mm a - MMM Do, YYYY');
-
+              if (balance === 0) {
+                status = 'Inactive';
+              } else if (balance > 0) {
+                status = 'Active';
+              }
               return (
                 <tr key={_id}>
-                  <td className="capitalize">{user.name}</td>
-                  <td>{plan}</td>
-                  <td>{formatPrice(amount)}</td>
+                  <td className="capitalize">{name}</td>
+                  <td>{email}</td>
+                  <td>{formatPrice(balance)}</td>
 
                   <td className="hidden sm:block">{date}</td>
-                  <td></td>
-                  <td>{status}</td>
+                  <td
+                    className={
+                      status === 'Active' ? 'text-green-600' : 'text-rose-500'
+                    }
+                  >
+                    {status}
+                  </td>
                 </tr>
               );
             })}
@@ -57,4 +57,4 @@ const PackageList = () => {
     </div>
   );
 };
-export default PackageList;
+export default ReferralList;
