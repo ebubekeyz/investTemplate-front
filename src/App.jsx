@@ -90,7 +90,7 @@ const router = createBrowserRouter([
         path: 'withdraw',
         element: <Withdraw />,
         loader: withdrawLoader(store),
-        action: withdrawAction(store),
+        action: withdrawAction(store, queryClient),
       },
       {
         path: 'referrals',

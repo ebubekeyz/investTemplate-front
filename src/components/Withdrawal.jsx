@@ -5,8 +5,20 @@ import { FormInput, SubmitBtn } from '../components';
 import { Form, redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+const withdrawalQuery = (name, data, token) => {
+  return {
+    queryKey: ['withdrawal', name],
+    queryFn: () =>
+      customFetch.post('/withdraw', data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+  };
+};
+
 export const action =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
@@ -19,11 +31,9 @@ export const action =
     }
 
     try {
-      const resp = await customFetch.post('/withdraw', data, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const resp = await queryClient.ensureQueryData(
+        withdrawalQuery(user.name, data, user.token)
+      );
       toast.success('Withdrawal Successful');
 
       return redirect('/dashboard');
@@ -41,7 +51,7 @@ const Withdrawal = () => {
   const balance = useSelector((state) => state.packageState.balance);
 
   return (
-    <Form method="post" className="align-element my-5 max-w-[50rem]">
+    <Form method="post" className="align-element my-5">
       <article className="">
         <h1 className="font-medium text-4xl">{formatPrice(Number(balance))}</h1>
       </article>

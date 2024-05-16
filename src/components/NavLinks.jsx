@@ -6,6 +6,7 @@ const links = [
   { id: 5, url: 'investment', text: 'investment' },
   { id: 6, url: 'settings', text: 'settings' },
   { id: 7, url: 'referrals', text: 'referral' },
+  { id: 8, url: 'pricing', text: 'pricing' },
 ];
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -21,6 +22,7 @@ const NavLinks = () => {
             url === 'withdraw' ||
             url === 'settings' ||
             url === 'investment' ||
+            url === 'pricing' ||
             url === 'referrals') &&
           !user
         )
