@@ -13,7 +13,7 @@ const withdrawQuery = (queryParams, name, token) => {
   return {
     queryKey: ['withdraw', name],
     queryFn: () =>
-      customFetch.get('/withdraw?status=sent', {
+      customFetch.get('/withdraw?sort=latest', {
         params: queryParams,
         headers: {
           Authorization: `Bearer ${token}`,

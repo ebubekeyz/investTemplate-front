@@ -47,6 +47,25 @@ export const changeStatus = createAsyncThunk(
     }
   }
 );
+export const changeWithdrawStatus = createAsyncThunk(
+  'user/changeStatus',
+  async (name, thunkAPI) => {
+    const user = thunkAPI.getState().userState.user;
+    try {
+      const resp = await customFetch.patch(
+        `/withdraw/${user._id}/editUserWithdraw`,
+        { status: 'expired' },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong');
+    }
+  }
+);
 export const updateBalance = createAsyncThunk(
   'user/updateBalance',
   async (name, thunkAPI) => {
@@ -115,7 +134,9 @@ const packageSlice = createSlice({
 
       if (withdraw) {
         withdraw.forEach((item) => {
-          state.withdrawAmount += item.amount;
+          if (item.status === 'sent') {
+            state.withdrawAmount += item.amount;
+          }
         });
       } else {
         state.withdraw = initialState.withdraw;

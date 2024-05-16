@@ -39,7 +39,9 @@ const WithdrawList = () => {
                   <td className="hidden sm:block">{date}</td>
                   <td
                     className={
-                      status === 'Active' ? 'text-green-600' : 'text-rose-500'
+                      status === 'sent'
+                        ? 'text-green-600 capitalize'
+                        : 'text-rose-500 capitalize'
                     }
                   >
                     {status}

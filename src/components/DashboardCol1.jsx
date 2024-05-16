@@ -5,6 +5,7 @@ import { changeStatus } from '../features/package/packageSlice';
 import Modal from './Modal';
 import { useEffect, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
+import { changeWithdrawStatus } from '../features/package/packageSlice';
 
 const DashboardCol1 = () => {
   const balance = useSelector((state) => state.packageState.balance);
@@ -16,6 +17,7 @@ const DashboardCol1 = () => {
 
   const handleUpgrade = () => {
     dispatch(changeStatus());
+    dispatch(changeWithdrawStatus());
   };
 
   return (
@@ -24,6 +26,13 @@ const DashboardCol1 = () => {
         <h1 className="font-medium tracking-wide capitalize text-lg">
           Balance
         </h1>
+        {profit === true ? (
+          <Link to="/withdraw" className="btn btn-xs btn-success animate-pulse">
+            Withdraw
+          </Link>
+        ) : (
+          ''
+        )}
         <Link
           to="/pricing"
           onClick={handleUpgrade}
