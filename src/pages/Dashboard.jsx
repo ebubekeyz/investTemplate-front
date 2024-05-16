@@ -3,7 +3,12 @@ import { customFetch } from '../utils';
 import { addItem } from '../features/package/packageSlice';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import { DashboardCol1, DashboardCol2, SectionTitle } from '../components';
+import {
+  Breadcrumb,
+  DashboardCol1,
+  DashboardCol2,
+  SectionTitle,
+} from '../components';
 
 const dashboardQuery = (name, token) => {
   return {
@@ -41,7 +46,7 @@ const Dashboard = () => {
   // console.log(Object.values(packages));
   return (
     <section className="align-element mt-4">
-      <SectionTitle text="Dashboard" />
+      <Breadcrumb text1="Home" url1="/" text2="Dashboard" url2="/dashboard" />
       <div className="grid grid-col-1 lg:grid-cols-12">
         <div className="lg:col-span-7 border-r-2 border-r-base-200 ">
           <DashboardCol1 />

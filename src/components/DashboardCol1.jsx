@@ -57,8 +57,12 @@ const DashboardCol1 = () => {
               facere consequatur minus esse!
             </p>
             <div className="flex justify-between pt-5">
-              <button className="btn btn-info btn-sm">Withdraw</button>
-              <button className="btn btn-success btn-sm">Reinvest</button>
+              <Link to="/withdraw" className="btn btn-info btn-sm">
+                Withdraw
+              </Link>
+              <Link to="" className="btn btn-success btn-sm">
+                Reinvest
+              </Link>
             </div>
           </div>
         </div>

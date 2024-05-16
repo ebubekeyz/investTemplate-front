@@ -5,8 +5,9 @@ import {
   ComplexPaginationContainer,
   PackageComponent,
   PackageFilters,
+  SectionTitle,
 } from '../components';
-import { redirect } from 'react-router-dom';
+import { redirect, useLoaderData } from 'react-router-dom';
 
 const investmentQuery = (queryParams, id, token) => {
   const { date, amount, packagePlan, page } = queryParams;
@@ -32,6 +33,7 @@ export const loader =
   (store, queryClient) =>
   async ({ request }) => {
     const user = store.getState().userState.user;
+
     if (!user) {
       toast.warn('You must be logged in to view this page');
       return redirect('/login');
@@ -52,6 +54,14 @@ export const loader =
   };
 
 const Investment = () => {
+  const { packages } = useLoaderData();
+  if (packages.length === 0) {
+    return (
+      <div className="align-element mt-10">
+        <SectionTitle text="No Investment Package" />
+      </div>
+    );
+  }
   return (
     <div className="align-element my-8">
       <Breadcrumb text1="Home" url1="/" text2="Investment" url2="/investment" />

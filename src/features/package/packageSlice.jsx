@@ -120,10 +120,16 @@ const packageSlice = createSlice({
       } else {
         state.withdraw = initialState.withdraw;
       }
+
+      const amount = {
+        amount: state.withdrawAmount,
+      };
+      localStorage.setItem('amount', JSON.stringify(amount));
     },
     calculatePercentage: (state) => {
       const pack =
         Object.values(JSON.parse(localStorage.getItem('package'))) || null;
+      const withdrawAmount = JSON.parse(localStorage.getItem('amount'));
 
       if (pack) {
         pack.forEach((item1) => {
@@ -135,8 +141,6 @@ const packageSlice = createSlice({
               (state.totalAmount * state.percent) / 100
             );
 
-            console.log(state.withdrawAmount);
-
             const profit =
               moment().format('DD') ==
               moment(item1.updatedAt).add(item2.days, 'days').format('DD');
@@ -146,7 +150,7 @@ const packageSlice = createSlice({
                 state.totalAmount +
                 state.percentage +
                 state.referralBonus -
-                state.withdrawAmount;
+                withdrawAmount.amount;
 
               state.profit = true;
             } else {

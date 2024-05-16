@@ -23,6 +23,7 @@ import {
   UpdatePassword,
   Referrals,
   Pricing,
+  WithdrawList,
 } from './pages';
 
 import { loader as referralLoader } from './pages/Referrals';
@@ -32,6 +33,7 @@ import { loader as withdrawLoader } from './pages/Withdraw';
 import { loader as payLoader } from './pages/Pay';
 import { loader as settingsLoader } from './pages/Settings';
 import { loader as updatePasswordLoader } from './pages/UpdatePassword';
+import { loader as withdrawListLoader } from './pages/WithdrawList';
 
 import { action as loginAction } from './pages/Login';
 import { action as withdrawAction } from './components/Withdrawal';
@@ -100,6 +102,11 @@ const router = createBrowserRouter([
         element: <UpdatePassword />,
         loader: updatePasswordLoader(store),
         action: updatePasswordAction(store),
+      },
+      {
+        path: 'withdrawList',
+        element: <WithdrawList />,
+        loader: withdrawListLoader(store, queryClient),
       },
       {
         path: 'pricing',

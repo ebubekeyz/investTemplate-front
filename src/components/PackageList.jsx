@@ -5,6 +5,7 @@ day.extend(advancedFormat);
 import moment from 'moment';
 import { formatPrice } from '../utils';
 import { useSelector } from 'react-redux';
+import SectionTitle from './SectionTitle';
 
 const PackageList = () => {
   const { meta, packages } = useLoaderData();
@@ -21,6 +22,7 @@ const PackageList = () => {
           {/* head */}
           <thead>
             <tr>
+              <th>S/N</th>
               <th>Plan</th>
               <th>Amount</th>
               <th className="hidden sm:block">Date</th>
@@ -40,6 +42,10 @@ const PackageList = () => {
                 updatedAt,
                 status,
               } = pack;
+
+              let num = 0;
+              pack.num = num++;
+
               const date = day(createdAt).format('MMM Do');
               if (profit === false) {
                 status = 'Active';
@@ -49,6 +55,7 @@ const PackageList = () => {
 
               return (
                 <tr key={_id}>
+                  <td>{num}</td>
                   {packs.map((item) => {
                     return <td>{item.plan}</td>;
                   })}

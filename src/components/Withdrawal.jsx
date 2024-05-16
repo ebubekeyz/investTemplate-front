@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { customFetch } from '../utils';
+import { customFetch, formatPrice } from '../utils';
 import { addWithdraw } from '../features/package/packageSlice';
 import { FormInput, SubmitBtn } from '../components';
 import { Form, redirect } from 'react-router-dom';
@@ -11,6 +11,12 @@ export const action =
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
     const user = store.getState().userState.user;
+    const balance = store.getState().packageState.balance;
+
+    if (data.amount > balance) {
+      toast.error('Insufficient balance');
+      return null;
+    }
 
     try {
       const resp = await customFetch.post('/withdraw', data, {
@@ -32,10 +38,14 @@ export const action =
   };
 
 const Withdrawal = () => {
-  const withdraw = useSelector((state) => state.packageState.withdraw);
+  const balance = useSelector((state) => state.packageState.balance);
 
   return (
-    <Form method="post" className="align-element my-5">
+    <Form method="post" className="align-element my-5 max-w-[50rem]">
+      <article className="">
+        <h1 className="font-medium text-4xl">{formatPrice(Number(balance))}</h1>
+      </article>
+
       <h4 className="text-center text-3xl font-bold">Withdraw</h4>
       <FormInput label="amount" name="amount" />
       <SubmitBtn text="withdraw" />

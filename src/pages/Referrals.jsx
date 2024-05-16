@@ -6,8 +6,9 @@ import {
   ComplexPaginationContainer,
   Filters,
   ReferralComponent,
+  SectionTitle,
 } from '../components';
-import { redirect } from 'react-router-dom';
+import { redirect, useLoaderData } from 'react-router-dom';
 import { addReferral } from '../features/package/packageSlice';
 
 const referralQuery = (queryParams, id) => {
@@ -54,6 +55,14 @@ export const loader =
   };
 
 const Referrals = () => {
+  const { referral } = useLoaderData();
+  if (referral.length === 0) {
+    return (
+      <div className="align-element mt-10">
+        <SectionTitle text="No Referrals" />
+      </div>
+    );
+  }
   return (
     <div className="align-element my-8">
       <Breadcrumb text1="Home" url1="/" text2="Referral" url2="/referrals" />
