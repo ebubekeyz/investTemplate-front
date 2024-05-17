@@ -146,13 +146,19 @@ const DashboardCol1 = () => {
               />
             </div>
             <h1 className="text-2xl text-gray-950 tracking-wide text-center">
-              Heading
+              <span className="font-medium">Congratulations!!.</span> You have
+              Earned{' '}
+              <span className="font-medium text-2xl">
+                {formatPrice(profit)}
+              </span>
             </h1>
-            <p className="text-center leading-loose max-w-[30rem] text-gray-800">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-              est. Inventore perferendis quisquam excepturi blanditiis nemo,
-              facere consequatur minus esse!
-            </p>
+            <h2 className="text-2xl text-gray-950 tracking-wide text-center">
+              Your account balance is &nbsp;
+              <span className="font-medium text-3xl">
+                {formatPrice(balance)}
+              </span>
+            </h2>
+            <img src="/celebrate.svg" alt="happy" />
             <div className="flex justify-between pt-5">
               <Link to="/withdraw" className="btn btn-info btn-sm">
                 Withdraw

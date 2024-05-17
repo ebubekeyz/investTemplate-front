@@ -149,7 +149,7 @@ const packageSlice = createSlice({
     },
     calculatePercentage: (state) => {
       const pack =
-        Object.values(JSON.parse(localStorage.getItem('package'))) || null;
+        Object.values(JSON.parse(localStorage.getItem('package'))) || [];
       const withdrawAmount = JSON.parse(localStorage.getItem('amount'));
 
       if (pack) {
@@ -166,7 +166,7 @@ const packageSlice = createSlice({
               moment().format('DD') ==
               moment(item1.updatedAt).add(item2.days, 'days').format('DD');
 
-            if (profit === false) {
+            if (profit === true) {
               state.balance =
                 state.totalAmount +
                 state.percentage +
