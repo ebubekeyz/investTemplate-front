@@ -46,7 +46,7 @@ const DashboardCol2 = () => {
       </h1>
 
       <article className="mt-10">
-        {/* <LineCharts /> */}
+        <LineCharts />
 
         <div className="flex gap-5">
           {Object.values(referrals).map((item) => {
