@@ -2,9 +2,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 // import { calculatePercentage } from './features/package/packageSlice';
-import { calculateReferral } from './features/package/packageSlice';
+// import { calculateReferral } from './features/package/packageSlice';
 import { updateBalance } from './features/package/packageSlice';
-import { calculateWithdraw } from './features/package/packageSlice';
+// import { calculateWithdraw } from './features/package/packageSlice';
 
 import {
   HomeLayout,
@@ -141,9 +141,9 @@ const App = () => {
 
   useEffect(() => {
     // dispatch(calculatePercentage())
-    dispatch(calculateReferral());
+    // dispatch(calculateReferral());
     dispatch(updateBalance());
-    dispatch(calculateWithdraw());
+    // dispatch(calculateWithdraw());
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
