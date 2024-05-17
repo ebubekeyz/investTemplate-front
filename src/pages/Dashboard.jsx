@@ -52,7 +52,7 @@ const Dashboard = () => {
   // },[]);
 
   return (
-    <section className="align-element mt-4">
+    <section className="align-element my-4">
       <Breadcrumb text1="Home" url1="/" text2="Dashboard" url2="/dashboard" />
       <div className="grid grid-col-1 lg:grid-cols-12">
         <div className="lg:col-span-7 border-r-2 border-r-base-200 ">

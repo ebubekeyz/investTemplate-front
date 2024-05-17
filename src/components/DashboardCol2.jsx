@@ -48,11 +48,11 @@ const DashboardCol2 = () => {
       <article className="mt-10">
         <LineCharts />
 
-        <div className="flex gap-5">
+        <div className="flex-col lg:flex gap-5">
           {Object.values(referrals).map((item) => {
             const { updatedAt } = item;
             return (
-              <div className="flex-col lg:flex gap-x-5 items-center">
+              <div className="flex gap-x-5 items-center">
                 <span className="text-orange-600">Joined:</span>
                 <div className="rounded-full bg-green-600 h-3 w-3"></div>
                 {moment(updatedAt).calendar()}
