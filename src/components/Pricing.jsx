@@ -36,7 +36,7 @@ const Pricing = () => {
         nav('/pay');
       },
       color:
-        'h-[27.5rem] w-[90%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
+        'h-[27.5rem] w-[95%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
     },
     {
       id: nanoid(),
@@ -61,7 +61,7 @@ const Pricing = () => {
         nav('/pay');
       },
       color:
-        'h-[30rem] w-[90%] rounded-xl grid bg-cyan-500 place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
+        'h-[30rem] w-[95%] rounded-xl grid bg-cyan-500 place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
     },
     {
       id: nanoid(),
@@ -86,7 +86,7 @@ const Pricing = () => {
         nav('/pay');
       },
       color:
-        'h-[27.5rem] w-[90%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
+        'h-[27.5rem] w-[95%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
     },
     {
       id: nanoid(),
@@ -111,14 +111,14 @@ const Pricing = () => {
         nav('/pay');
       },
       color:
-        'h-[27.5rem] w-[90%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
+        'h-[27.5rem] w-[95%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
     },
     {
       id: nanoid(),
       identity: 'plan5',
       plan: 'T-H STAKE1 Plan',
       amount: 41000,
-      max: 90000,
+      max: 95000,
       percent: 7,
       days: 1,
       badge: 'text-5xl text-gray-700',
@@ -135,7 +135,7 @@ const Pricing = () => {
         nav('/pay');
       },
       color:
-        'h-[30rem] w-[90%] rounded-xl bg-cyan-500 grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
+        'h-[30rem] w-[95%] rounded-xl bg-cyan-500 grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
     },
     {
       id: nanoid(),
@@ -159,7 +159,7 @@ const Pricing = () => {
         nav('/pay');
       },
       color:
-        'h-[27.5rem] w-[90%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
+        'h-[27.5rem] w-[95%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
     },
   ];
   return (
