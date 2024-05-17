@@ -66,7 +66,7 @@ const DashboardCol2 = () => {
             Referral ID
           </h1>
 
-          <div className="bg-base-200 px-5 rounded-xl ">{copyID}</div>
+          <div className="bg-base-200 px-5 rounded-xl mt-5">{copyID}</div>
         </article>
 
         <div className="flex justify-end">

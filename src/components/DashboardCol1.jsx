@@ -43,13 +43,11 @@ const DashboardCol1 = () => {
           ''
         )}
       </article>
-
       <article className="">
         <h1 className="font-medium text-4xl">{formatPrice(Number(balance))}</h1>
       </article>
 
-      <article className="flex-col lg:flex lg:justify-start gap-x-5 lg:items-center mt-8">
-        {' '}
+      <div className="flex gap-x-2 mt-10">
         <Link
           to="/pricing"
           className="btn btn-xs btn-outline border-l-cyan-400 border-r-cyan-300"
@@ -69,12 +67,10 @@ const DashboardCol1 = () => {
         >
           Investment Log
         </Link>
-      </article>
-
+      </div>
       <h1 className="font-medium tracking-wide capitalize text-xl mt-5 border-b border-b-base-200 pb-5">
         Investment Chart
       </h1>
-
       <article>
         <BarCharts />
 
@@ -98,7 +94,6 @@ const DashboardCol1 = () => {
           })}
         </div>
       </article>
-
       <article className="my-20">
         <article className="">
           <h1 className="font-medium tracking-wide capitalize text-lg">
@@ -133,7 +128,6 @@ const DashboardCol1 = () => {
           })}
         </div>
       </article>
-
       {prof && (
         <div className="p-12 grid place-items-center bg-emerald-600 bg-opacity-10 absolute top-0 left-0 bottom-0 right-0 z-10">
           <div className="rounded-xl shadow-lg bg-slate-200 px-14 py-10 transition duration-200">
