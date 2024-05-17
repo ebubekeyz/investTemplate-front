@@ -48,7 +48,7 @@ const DashboardCol1 = () => {
         <h1 className="font-medium text-4xl">{formatPrice(Number(balance))}</h1>
       </article>
 
-      <article className="flex justify-start gap-x-5 items-center mt-8">
+      <article className="flex-col lg:flex justify-start gap-x-5 items-center mt-8">
         {' '}
         <Link
           to="/pricing"
