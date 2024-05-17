@@ -14,9 +14,9 @@ const Header = () => {
 
   const handleLogout = (e) => {
     navigate('/');
-
+    localStorage.removeItem('wallet');
     dispatch(logoutUser());
-    // dispatch(clearPackage());
+    dispatch(clearPackage());
     queryClient.removeQueries();
   };
 
