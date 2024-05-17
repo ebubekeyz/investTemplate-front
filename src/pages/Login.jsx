@@ -32,7 +32,7 @@ export const action =
       if (packs == []) {
         return redirect('/pricing');
       } else {
-        return redirect('/dashboard');
+        return redirect('/');
       }
     } catch (error) {
       console.log(error);
