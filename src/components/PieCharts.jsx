@@ -35,7 +35,7 @@ const PieCharts = () => {
   return (
     <div className="pb-96 relative mt-10">
       <div className="absolute top-0 left-0 w-full h-full">
-        <ResponsiveContainer width="100%">
+        <ResponsiveContainer width="90%">
           <AreaChart
             width={500}
             height={400}
