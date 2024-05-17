@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 // import { calculateReferral } from './features/package/packageSlice';
 import { updateBalance } from './features/package/packageSlice';
 // import { calculateWithdraw } from './features/package/packageSlice';
+import { packageCalculations } from './features/package/packageSlice';
 
 import {
   HomeLayout,
@@ -143,6 +144,7 @@ const App = () => {
     // dispatch(calculatePercentage())
     // dispatch(calculateReferral());
     dispatch(updateBalance());
+    dispatch(packageCalculations());
     // dispatch(calculateWithdraw());
   }, []);
   return (

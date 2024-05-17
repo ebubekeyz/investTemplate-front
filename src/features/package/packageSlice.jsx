@@ -28,6 +28,15 @@ const initialState = {
   withdrawAmount: 0,
 };
 
+export const packageCalculations = createAsyncThunk(
+  'user/changeStatus',
+  async (name, thunkAPI) => {
+    thunkAPI.dispatch(calculatePercentage());
+    thunkAPI.dispatch(calculateWithdraw());
+    thunkAPI.dispatch(calculateReferral());
+  }
+);
+
 export const changeStatus = createAsyncThunk(
   'user/changeStatus',
   async (name, thunkAPI) => {
