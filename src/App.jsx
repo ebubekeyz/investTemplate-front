@@ -140,7 +140,7 @@ const App = () => {
   const user = useSelector((state) => state.userState.user);
 
   useEffect(() => {
-    dispatch(calculatePercentage());
+    dispatch(calculatePercentage()) || 0;
     dispatch(calculateReferral());
     dispatch(updateBalance());
     dispatch(calculateWithdraw());
