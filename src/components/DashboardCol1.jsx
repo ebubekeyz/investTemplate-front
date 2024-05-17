@@ -86,7 +86,7 @@ const DashboardCol1 = () => {
                 {item.package.map((item2) => {
                   const { days } = item2;
                   return (
-                    <div className="flex items-center gap-x-5">
+                    <div className="flex-col lg:flex items-center gap-x-5">
                       <span className="text-red-400">Exp:</span>
                       <div className="rounded-full bg-green-600 h-3 w-3"></div>
                       {moment(updatedAt).add(days, 'days').calendar()}
@@ -124,7 +124,7 @@ const DashboardCol1 = () => {
           {Object.values(withdraw).map((item) => {
             const { updatedAt } = item;
             return (
-              <div className="flex gap-x-5 items-center">
+              <div className="flex-col lg:flex gap-x-5 items-center">
                 <span className="text-pink-500">Date:</span>
                 <div className="rounded-full bg-green-600 h-3 w-3"></div>
                 {moment(updatedAt).calendar()}
