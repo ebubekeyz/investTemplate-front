@@ -16,7 +16,7 @@ const Header = () => {
     navigate('/');
 
     dispatch(logoutUser());
-    dispatch(clearPackage());
+    // dispatch(clearPackage());
     queryClient.removeQueries();
   };
 
