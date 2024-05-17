@@ -8,7 +8,7 @@ import {
   Legend,
   Tooltip,
 } from 'recharts';
-import { productSales } from '../utils';
+
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { formatPrice } from '../utils';
