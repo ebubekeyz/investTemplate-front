@@ -23,7 +23,7 @@ const LineCharts = () => {
   return (
     <div className="pb-96 relative h-full">
       <div className="absolute top-0 left-0 w-full h-full">
-        <ResponsiveContainer width="90%">
+        <ResponsiveContainer width="100%">
           <LineChart width={500} height={400} data={referrals}>
             <YAxis />
             <XAxis dataKey="name" />
