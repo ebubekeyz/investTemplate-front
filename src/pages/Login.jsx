@@ -12,6 +12,8 @@ export const action =
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
 
+    const packs2 = store.getState().packageState.package;
+
     const packs = JSON.parse(localStorage.getItem('package'));
     try {
       const response = await customFetch.post('/auth/local', data);
@@ -26,7 +28,8 @@ export const action =
       // } else {
       //   return redirect('/');
       // }
-      if (packs === '') {
+      console.log(packs == {});
+      if (packs == []) {
         return redirect('/pricing');
       } else {
         return redirect('/dashboard');

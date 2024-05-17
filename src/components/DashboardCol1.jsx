@@ -118,7 +118,7 @@ const DashboardCol1 = () => {
             Withdrawal Chart
           </h1>
         </article>
-        <PieCharts />
+        {/* <PieCharts /> */}
 
         <div className="flex gap-5">
           {Object.values(withdraw).map((item) => {
