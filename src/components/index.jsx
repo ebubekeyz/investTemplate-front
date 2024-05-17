@@ -11,6 +11,7 @@ export { default as TextAreaInput } from './TextAreaInput';
 export { default as Pricing } from './Pricing';
 export { default as Title } from './Title';
 export { default as Hero2 } from './Hero2';
+export { default as PricingTitle } from './PricingTitle';
 export { default as WithdrawFilters } from './WithdrawFilters';
 export { default as UpdatePassword } from './UpdatePassword';
 export { default as FormInputFile } from './FormInputFile';

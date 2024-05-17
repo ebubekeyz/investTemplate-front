@@ -2,11 +2,7 @@ const links = [
   { id: 1, url: '/', text: 'home' },
   { id: 2, url: 'about', text: 'about' },
   { id: 3, url: 'dashboard', text: 'dashboard' },
-  { id: 5, url: 'investment', text: 'investment' },
-  { id: 6, url: 'settings', text: 'settings' },
-  { id: 7, url: 'referrals', text: 'referral' },
-  { id: 8, url: 'pricing', text: 'plans' },
-  { id: 9, url: 'withdrawList', text: 'withdrawals' },
+  { id: 4, url: 'settings', text: 'settings' },
 ];
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -17,16 +13,7 @@ const NavLinks = () => {
     <>
       {links.map((link) => {
         const { id, url, text } = link;
-        if (
-          (url === 'dashboard' ||
-            url === 'settings' ||
-            url === 'investment' ||
-            url === 'pricing' ||
-            url === 'withdrawList' ||
-            url === 'referrals') &&
-          !user
-        )
-          return null;
+        if ((url === 'dashboard' || url === 'settings') && !user) return null;
         return (
           <li key={id}>
             <NavLink className="capitalize" to={url}>

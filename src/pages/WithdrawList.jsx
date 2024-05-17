@@ -37,6 +37,7 @@ export const loader =
       const resp = await queryClient.ensureQueryData(
         withdrawQuery(params, user.name, user.token)
       );
+      console.log(resp.data.withdraw);
       store.dispatch(addWithdraw(resp.data.withdraw));
       const withdraw = resp.data.withdraw;
       const meta = resp.data.meta;

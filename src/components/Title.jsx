@@ -1,4 +1,7 @@
+import { useTranslation } from 'react-i18next';
+
 const Title = ({ title, description }) => {
+  const [t, i18n] = useTranslation('global');
   return (
     <div className="grid place-items-center max-w-lg mx-auto ">
       <h1 className="text-3xl font-bold capitalize">{title}</h1>

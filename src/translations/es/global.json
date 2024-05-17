@@ -1,0 +1,18 @@
+{
+  "pricing": {
+    "header": "Precios",
+    "text": "Nuestros precios son baratos y asequibles. No te lo pierdas"
+  },
+  "slider": [
+    {
+      "name": "Comience ahora",
+      "title": "Bienvenidos a Trexholding",
+      "quote": "Un enfoque completamente nuevo de la inversión."
+    },
+    {
+      "name": "Leer más",
+      "title": "Genere ganancias con integridad",
+      "quote": "Respaldamos la expansión de las inversiones en innovaciones prometedoras."
+    }
+  ]
+}

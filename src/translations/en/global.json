@@ -1,0 +1,18 @@
+{
+  "pricing": {
+    "header": "Pricing",
+    "text": "Our prices are cheap and affordable. Dont miss out"
+  },
+  "slider": [
+    {
+      "name": "Get Started Now",
+      "title": "Welcome to Trexholding",
+      "quote": "A completely new approach to investing."
+    },
+    {
+      "name": "Read more",
+      "title": "Create earnings with integrity",
+      "quote": "We endorse the expansion of investments in promising innovations."
+    }
+  ]
+}

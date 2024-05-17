@@ -6,10 +6,18 @@ import Modal from './Modal';
 import { useEffect, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { changeWithdrawStatus } from '../features/package/packageSlice';
+import BarCharts from './BarCharts';
+import moment from 'moment';
+import PieCharts from './PieCharts';
 
 const DashboardCol1 = () => {
   const balance = useSelector((state) => state.packageState.balance);
   const profit = useSelector((state) => state.packageState.profit);
+  const packs = useSelector((state) => state.packageState.package);
+  const withdraw = useSelector((state) => state.packageState.withdraw);
+  const withdrawAmount = useSelector(
+    (state) => state.packageState.withdrawAmount
+  );
 
   const [prof, setProf] = useState(profit);
 
@@ -24,8 +32,9 @@ const DashboardCol1 = () => {
     <section className="mt-5 pr-4">
       <article className="flex justify-between ">
         <h1 className="font-medium tracking-wide capitalize text-lg">
-          Balance
+          Account Balance
         </h1>
+
         {profit === true ? (
           <Link to="/withdraw" className="btn btn-xs btn-success animate-pulse">
             Withdraw
@@ -33,6 +42,20 @@ const DashboardCol1 = () => {
         ) : (
           ''
         )}
+      </article>
+
+      <article className="">
+        <h1 className="font-medium text-4xl">{formatPrice(Number(balance))}</h1>
+      </article>
+
+      <article className="flex justify-start gap-x-5 items-center mt-8">
+        {' '}
+        <Link
+          to="/pricing"
+          className="btn btn-xs btn-outline border-l-cyan-400 border-r-cyan-300"
+        >
+          Invest
+        </Link>
         <Link
           to="/pricing"
           onClick={handleUpgrade}
@@ -40,10 +63,75 @@ const DashboardCol1 = () => {
         >
           Upgrade Plan
         </Link>
+        <Link
+          to="/investment"
+          className="btn btn-xs btn-outline border-l-rose-600 border-r-rose-500"
+        >
+          Investment Log
+        </Link>
       </article>
 
-      <article className="">
-        <h1 className="font-medium text-4xl">{formatPrice(Number(balance))}</h1>
+      <h1 className="font-medium tracking-wide capitalize text-xl mt-5 border-b border-b-base-200 pb-5">
+        Investment Chart
+      </h1>
+
+      <article>
+        <BarCharts />
+
+        <div className="flex gap-5">
+          {Object.values(packs).map((item) => {
+            const { updatedAt } = item;
+            return (
+              <div>
+                {item.package.map((item2) => {
+                  const { days } = item2;
+                  return (
+                    <div className="flex items-center gap-x-5">
+                      <span className="text-red-400">Exp:</span>
+                      <div className="rounded-full bg-green-600 h-3 w-3"></div>
+                      {moment(updatedAt).add(days, 'days').calendar()}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </article>
+
+      <article className="my-20">
+        <article className="">
+          <h1 className="font-medium tracking-wide capitalize text-lg">
+            Total Withdrawal Balance
+          </h1>
+          <h1 className="font-medium text-3xl">
+            {formatPrice(Number(withdrawAmount))}
+          </h1>
+
+          <Link
+            to="/withdrawList"
+            className="btn btn-xs btn-outline border-l-lime-400 border-r-lime-300 my-5"
+          >
+            Withdraw Log
+          </Link>
+          <h1 className="font-medium tracking-wide capitalize text-xl border-b border-b-base-200 pb-5">
+            Withdrawal Chart
+          </h1>
+        </article>
+        <PieCharts />
+
+        <div className="flex gap-5">
+          {Object.values(withdraw).map((item) => {
+            const { updatedAt } = item;
+            return (
+              <div className="flex gap-x-5 items-center">
+                <span className="text-pink-500">Date:</span>
+                <div className="rounded-full bg-green-600 h-3 w-3"></div>
+                {moment(updatedAt).calendar()}
+              </div>
+            );
+          })}
+        </div>
       </article>
 
       {prof && (

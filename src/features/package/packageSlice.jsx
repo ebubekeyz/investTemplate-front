@@ -166,7 +166,7 @@ const packageSlice = createSlice({
               moment().format('DD') ==
               moment(item1.updatedAt).add(item2.days, 'days').format('DD');
 
-            if (profit === true) {
+            if (profit === false) {
               state.balance =
                 state.totalAmount +
                 state.percentage +

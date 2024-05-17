@@ -21,7 +21,7 @@ export const action =
   (store, queryClient) =>
   async ({ request }) => {
     const formData = await request.formData();
-    const data = Object.fromEntries(formData);
+    let data = Object.fromEntries(formData);
     const user = store.getState().userState.user;
     const balance = store.getState().packageState.balance;
 
@@ -29,7 +29,25 @@ export const action =
       toast.error('Insufficient balance');
       return null;
     }
+    if (
+      !user.accountNumber ||
+      user.accountNumber === '' ||
+      !user.accountName ||
+      user.accountName === ''
+    ) {
+      toast.error(
+        'You must add your account number before you withdraw. Please go to your settings'
+      );
+      return null;
+    }
 
+    data = {
+      ...data,
+      accountNumber: user.accountNumber,
+      accountName: user.accountName,
+    };
+
+    console.log(data);
     try {
       const resp = await queryClient.ensureQueryData(
         withdrawalQuery(user.name, data, user.token)

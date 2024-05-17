@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { LuBadgeCheck } from 'react-icons/lu';
 import { FaCheck, FaIdBadge } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+
 const Pricing = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
