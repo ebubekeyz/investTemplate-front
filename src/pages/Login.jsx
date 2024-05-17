@@ -11,6 +11,8 @@ export const action =
   async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
+
+    const packs = store.getState().packageState.package;
     try {
       const response = await customFetch.post('/auth/local', data);
 
@@ -24,6 +26,9 @@ export const action =
       // } else {
       //   return redirect('/');
       // }
+      if (!packs || packs === '') {
+        return redirect('/pricing');
+      }
       return redirect('/dashboard');
     } catch (error) {
       console.log(error);
