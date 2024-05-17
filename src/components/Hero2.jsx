@@ -32,7 +32,7 @@ const Hero2 = () => {
                   <img src={image} alt={name} className="w-80" />
                 </div>
                 <div className="animate-pulse md:animate-bounce text-center md:text-left my-32 md:my-0">
-                  <h1 className="text-xl lg:text-4xl font-bold tracking-wide">
+                  <h1 className="text-3xl lg:text-4xl font-bold tracking-wide">
                     {title}
                   </h1>
                   <p className="leading-loose lg:text-lg lg:pb-4 pb-2 max-w-[25rem]">

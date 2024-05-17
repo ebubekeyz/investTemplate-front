@@ -78,7 +78,7 @@ const DashboardCol1 = () => {
       <article>
         <BarCharts />
 
-        <div className="flex gap-5">
+        <div className="lg:flex flex-col gap-5">
           {Object.values(packs).map((item) => {
             const { updatedAt } = item;
             return (
@@ -120,7 +120,7 @@ const DashboardCol1 = () => {
         </article>
         <PieCharts />
 
-        <div className="flex gap-5">
+        <div className="lg:flex gap-5 flex:col">
           {Object.values(withdraw).map((item) => {
             const { updatedAt } = item;
             return (

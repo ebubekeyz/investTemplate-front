@@ -61,7 +61,7 @@ const DashboardCol2 = () => {
           })}
         </div>
 
-        <article className="flex justify-between mt-12 border-b border-b-base-200 pb-5">
+        <article className="flex-col lg:flex lg:justify-between mt-12 border-b border-b-base-200 pb-5">
           <h1 className="font-medium tracking-wide capitalize text-lg">
             Referral ID
           </h1>
