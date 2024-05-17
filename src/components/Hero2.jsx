@@ -26,17 +26,21 @@ const Hero2 = () => {
           const { id, name, title, image, quote, link, color } = person;
           return (
             <article key={id} className={color}>
-              <div className="grid md:grid-cols-2 gap-5 align-element place-items-center pt-8">
+              <div className="grid md:grid-cols-2 gap-5 place-items-center">
                 <div className="hidden md:grid">
                   {' '}
                   <img src={image} alt={name} className="w-80" />
                 </div>
                 <div className="animate-pulse md:animate-bounce text-center md:text-left my-32 md:my-0">
-                  <h1 className="text-4xl font-bold tracking-wide">{title}</h1>
-                  <p className="leading-loose text-xl">{quote}</p>
+                  <h1 className="text-xl lg:text-4xl font-bold tracking-wide">
+                    {title}
+                  </h1>
+                  <p className="leading-loose lg:text-lg lg:pb-4 pb-2 max-w-[25rem]">
+                    {quote}
+                  </p>
                   <Link
                     to={link}
-                    className="btn border-primary btn-md border-none"
+                    className="btn border-primary btn-sm lg:btn-md border-none"
                   >
                     {name}
                   </Link>

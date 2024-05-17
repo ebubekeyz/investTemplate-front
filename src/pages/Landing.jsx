@@ -4,7 +4,7 @@ const Landing = () => {
   return (
     <>
       <Hero2 />
-      <section className="align-element py-20">
+      <section className="align-element py-10">
         <PricingTitle />
         <Pricing />
       </section>

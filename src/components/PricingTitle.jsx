@@ -9,7 +9,7 @@ const PricingTitle = () => {
   };
 
   useEffect(() => {
-    handleChangeLanguage('es');
+    handleChangeLanguage('en');
   }, []);
   return (
     <div className="grid place-items-center max-w-lg mx-auto ">

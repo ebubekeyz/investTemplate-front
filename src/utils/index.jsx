@@ -24,7 +24,7 @@ export const list = [
     image: '/banner-img1.svg',
     link: '/register',
     name: 'Get Started Now',
-    color: `h-[70vh] bg-gradient-to-l from-cyan-500 to-blue-500  hover:bg-gradient-to-r`,
+    color: `h-[50vh] lg:h-[70vh] bg-gradient-to-l from-cyan-500 to-blue-500  hover:bg-gradient-to-r`,
 
     title: 'Welcome to Trexholding',
     quote: 'A completely new approach to investing.',
@@ -34,7 +34,7 @@ export const list = [
     image: '/banner-img2.svg',
     link: '/about',
     name: 'Read more',
-    color: `h-[70vh] bg-gradient-to-l from-violet-500 to-fuchsia-500  hover:bg-gradient-to-r`,
+    color: `h-[50vh] lg:h-[70vh] bg-gradient-to-l from-violet-500 to-fuchsia-500  hover:bg-gradient-to-r`,
     title: 'Create earnings with integrity',
     quote: 'We endorse the expansion of investments in promising innovations.',
   },

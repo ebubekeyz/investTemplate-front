@@ -3,12 +3,14 @@ import { customFetch } from '../utils';
 import { addItem } from '../features/package/packageSlice';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Breadcrumb,
   DashboardCol1,
   DashboardCol2,
   SectionTitle,
 } from '../components';
+import { useEffect, useState } from 'react';
 
 const dashboardQuery = (name, token) => {
   return {
@@ -43,7 +45,12 @@ export const loader = (store, queryClient) => async () => {
 
 const Dashboard = () => {
   const packages = useSelector((state) => state.packageState.package);
-  // console.log(Object.values(packages));
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   navigate(0);
+  // },[]);
+
   return (
     <section className="align-element mt-4">
       <Breadcrumb text1="Home" url1="/" text2="Dashboard" url2="/dashboard" />

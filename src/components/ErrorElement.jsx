@@ -1,9 +1,18 @@
-import { useRouteError } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, useRouteError } from 'react-router-dom';
 
 const ErrorElement = () => {
-  // setInterval(() => {
-  //   window.location.reload();
-  // }, 2000);
-  return <h4 className="font-bold text-4xl">There was an Error...</h4>;
+  const nav = useNavigate();
+
+  useEffect(() => {
+    setInterval(() => {
+      nav(0);
+    }, 3000);
+  }, []);
+  return (
+    <div className="font-bold text-4xl grid place-items-center h-[50vh]">
+      There was an Error...
+    </div>
+  );
 };
 export default ErrorElement;
