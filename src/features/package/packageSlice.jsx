@@ -27,7 +27,64 @@ const initialState = {
   withdraw: getWithdrawFromLocalStorage(),
   withdrawAmount: 0,
 };
+export const loadPackage = createAsyncThunk(
+  'user/changeStatus',
+  async (name, thunkAPI) => {
+    const user = thunkAPI.getState().userState.user;
+    try {
+      const resp = await customFetch.get(
+        `/package?status=paid`,
 
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      thunkAPI.dispatch(addItem(resp.data.packages));
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong');
+    }
+  }
+);
+
+export const loadReferral = createAsyncThunk(
+  'user/changeStatus',
+  async (name, thunkAPI) => {
+    const user = thunkAPI.getState().userState.user;
+    try {
+      const resp = await customFetch.get(
+        `/auth?ref=${user._id}&sort=latest`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      thunkAPI.dispatch(addReferral(resp.data.users));
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong');
+    }
+  }
+);
+
+export const loadWithdraw = createAsyncThunk(
+  'user/changeStatus',
+  async (name, thunkAPI) => {
+    const user = thunkAPI.getState().userState.user;
+    try {
+      const resp = await customFetch.get(`/withdraw`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      thunkAPI.dispatch(addWithdraw(resp.data.withdraw));
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong');
+    }
+  }
+);
 export const packageCalculations = createAsyncThunk(
   'user/changeStatus',
   async (name, thunkAPI) => {
