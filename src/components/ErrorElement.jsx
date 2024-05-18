@@ -7,7 +7,7 @@ const ErrorElement = () => {
   useEffect(() => {
     setInterval(() => {
       nav(0);
-    }, 3000);
+    }, 5000);
   }, []);
   return (
     <div className="font-bold text-4xl grid place-items-center h-[50vh]">

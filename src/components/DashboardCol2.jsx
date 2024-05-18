@@ -50,9 +50,9 @@ const DashboardCol2 = () => {
 
         <div className="flex-col lg:flex gap-5">
           {Object.values(referrals).map((item) => {
-            const { createdAt } = item;
+            const { createdAt, _id } = item;
             return (
-              <div className="flex gap-x-5 items-center">
+              <div key={_id} className="flex gap-x-5 items-center">
                 <span className="text-orange-600">Joined:</span>
                 <div className="rounded-full bg-green-600 h-3 w-3"></div>
                 {moment(createdAt).calendar()}

@@ -10,6 +10,7 @@ import BarCharts from './BarCharts';
 import moment from 'moment';
 import PieCharts from './PieCharts';
 import { toast } from 'react-toastify';
+import { reinvestFunc } from '../features/package/packageSlice';
 
 const DashboardCol1 = () => {
   const balance = useSelector((state) => state.packageState.balance);
@@ -25,6 +26,15 @@ const DashboardCol1 = () => {
 
   const dispatch = useDispatch();
 
+  const handleWithdraw = () => {
+    if (balance === 0) {
+      toast.warn('Your balance is too low to withdraw');
+      return null;
+    } else if (balance > 0) {
+      return nav('/withdraw');
+    }
+  };
+
   const handleUpgrade = () => {
     if (balance === 0) {
       dispatch(changeStatus());
@@ -32,7 +42,21 @@ const DashboardCol1 = () => {
       return nav('/pricing');
     } else if (balance > 0) {
       toast.warn('You must withdraw before you upgrade');
-      return nav('/withdraw');
+      return null;
+    }
+  };
+
+  const handleReinvest = () => {
+    if (balance === 0) {
+      toast.warn(
+        'You cannot reinvest with account balance of zero, please create a new investment'
+      );
+      return null;
+    } else if (balance > 0) {
+      dispatch(changeWithdrawStatus());
+      dispatch(reinvestFunc());
+      window.location.reload();
+      return nav('/dashboard');
     }
   };
 
@@ -44,9 +68,12 @@ const DashboardCol1 = () => {
         </h1>
 
         {profit === true ? (
-          <Link to="/withdraw" className="btn btn-xs btn-success animate-pulse">
+          <button
+            onClick={handleWithdraw}
+            className="btn btn-xs btn-success animate-pulse"
+          >
             Withdraw
-          </Link>
+          </button>
         ) : (
           ''
         )}
@@ -62,13 +89,12 @@ const DashboardCol1 = () => {
         >
           Invest
         </Link>
-        <Link
-          to="/pricing"
+        <button
           onClick={handleUpgrade}
           className="btn btn-xs btn-outline border-l-cyan-400 border-r-cyan-300"
         >
           Upgrade Plan
-        </Link>
+        </button>
         <Link
           to="/investment"
           className="btn btn-xs btn-outline border-l-rose-600 border-r-rose-500"
@@ -84,13 +110,13 @@ const DashboardCol1 = () => {
 
         <div className="lg:flex flex-col gap-5">
           {Object.values(packs).map((item) => {
-            const { updatedAt } = item;
+            const { updatedAt, _id } = item;
             return (
-              <div>
+              <div key={_id}>
                 {item.package.map((item2) => {
-                  const { days } = item2;
+                  const { days, _id } = item2;
                   return (
-                    <div className="flex items-center gap-x-5">
+                    <div key={_id} className="flex items-center gap-x-5">
                       <span className="text-red-400">Exp:</span>
                       <div className="rounded-full bg-green-600 h-3 w-3"></div>
                       {moment(updatedAt).add(days, 'days').calendar()}
@@ -125,9 +151,9 @@ const DashboardCol1 = () => {
 
         <div className="flex-col lg:flex gap-5 flex:col">
           {Object.values(withdraw).map((item) => {
-            const { updatedAt } = item;
+            const { updatedAt, _id } = item;
             return (
-              <div className="flex gap-x-5 items-center">
+              <div key={_id} className="flex gap-x-5 items-center">
                 <span className="text-pink-500">Date:</span>
                 <div className="rounded-full bg-green-600 h-3 w-3"></div>
                 {moment(updatedAt).calendar()}
@@ -162,12 +188,15 @@ const DashboardCol1 = () => {
             </h2>
             <img src="/celebrate.svg" alt="happy" />
             <div className="flex justify-between pt-5">
-              <Link to="/withdraw" className="btn btn-info btn-sm">
+              <button onClick={handleWithdraw} className="btn btn-info btn-sm">
                 Withdraw
-              </Link>
-              <Link to="" className="btn btn-success btn-sm">
+              </button>
+              <button
+                onClick={handleReinvest}
+                className="btn btn-success btn-sm"
+              >
                 Reinvest
-              </Link>
+              </button>
             </div>
           </div>
         </div>

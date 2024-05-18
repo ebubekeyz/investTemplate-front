@@ -27,8 +27,48 @@ const initialState = {
   withdraw: getWithdrawFromLocalStorage(),
   withdrawAmount: 0,
 };
+
+export const reinvestFunc = createAsyncThunk(
+  'packageReinvest/reinvestFunc',
+  async (name, thunkAPI) => {
+    const user = thunkAPI.getState().userState.user;
+    const packages = thunkAPI.getState().packageState.package;
+    const balance = thunkAPI.getState().packageState.balance;
+    const packs = Object.values(packages);
+    const length = packs.length - 1;
+    const { status, receipt, coin, package: pacs } = packs[length];
+    const length2 = pacs.length - 1;
+    const { plan, amount: amount, max, percent, days } = pacs[length2];
+
+    let data = {
+      status: status,
+      amount: balance,
+      receipt: receipt,
+      coin: coin,
+      package: {
+        plan: plan,
+        amount: amount,
+        max: max,
+        percent: percent,
+        days: days,
+      },
+    };
+    try {
+      const resp = await customFetch.post(`/package`, data, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      thunkAPI.dispatch(addItem(resp.data.attributes));
+      toast.success('You have successfully reinvested');
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Something went wrong');
+    }
+  }
+);
+
 export const loadPackage = createAsyncThunk(
-  'user/changeStatus',
+  'package/loadPackage',
   async (name, thunkAPI) => {
     const user = thunkAPI.getState().userState.user;
     try {
@@ -49,7 +89,7 @@ export const loadPackage = createAsyncThunk(
 );
 
 export const loadReferral = createAsyncThunk(
-  'user/changeStatus',
+  'referral/loadReferral',
   async (name, thunkAPI) => {
     const user = thunkAPI.getState().userState.user;
     try {
@@ -70,7 +110,7 @@ export const loadReferral = createAsyncThunk(
 );
 
 export const loadWithdraw = createAsyncThunk(
-  'user/changeStatus',
+  'withdraw/loadWithdraw',
   async (name, thunkAPI) => {
     const user = thunkAPI.getState().userState.user;
     try {
@@ -86,7 +126,7 @@ export const loadWithdraw = createAsyncThunk(
   }
 );
 export const packageCalculations = createAsyncThunk(
-  'user/changeStatus',
+  'packageCalc/packageCalculations',
   async (name, thunkAPI) => {
     thunkAPI.dispatch(calculatePercentage());
     thunkAPI.dispatch(calculateWithdraw());
@@ -190,7 +230,8 @@ const packageSlice = createSlice({
           state.referralBonus += Math.ceil((item.balance * 10) / 100);
         });
       } else {
-        state.referralBonus = initialState.referralBonus;
+        state.referralBonus = 0;
+        state.referral = [];
       }
     },
     calculateWithdraw: (state) => {
@@ -205,7 +246,7 @@ const packageSlice = createSlice({
           }
         });
       } else {
-        state.withdraw = initialState.withdraw;
+        state.withdraw = [];
       }
 
       const amount = {
