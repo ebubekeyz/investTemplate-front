@@ -1,6 +1,6 @@
 import { BsCart3, BsMoonFill, BsSunFill } from 'react-icons/bs';
 import { FaBarsStaggered } from 'react-icons/fa6';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import NavLinks from './NavLinks';
 import { useDispatch } from 'react-redux';
 import { toggleTheme } from '../features/user/userSlice';
@@ -19,12 +19,15 @@ const Navbar = () => {
       <div className="navbar align-element">
         <div className="navbar-start">
           {/* TITLE */}
-          <NavLink
+          <Link
             to="/"
-            className="hidden lg:flex items-center text-cyan-500 font-medium tracking-wide capitalize text-2xl animate-pulse"
+            className="hidden lg:flex bg-blue-300 shadow py-2 px-4 rounded-xl"
           >
-            Logo text
-          </NavLink>
+            {' '}
+            <div className="stat-title text-primary-content text-xl font-bold tracking-widest">
+              Trust Investment
+            </div>
+          </Link>
 
           {/* DROPDOWN */}
           <div className="dropdown">

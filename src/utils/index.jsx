@@ -26,7 +26,7 @@ export const list = [
     name: 'Get Started Now',
     color: `h-[50vh] lg:h-[70vh] bg-gradient-to-l from-cyan-500 to-blue-500  hover:bg-gradient-to-r`,
 
-    title: 'Welcome to Trexholding',
+    title: 'Trust Investment',
     quote: 'A completely new approach to investing.',
   },
   {
