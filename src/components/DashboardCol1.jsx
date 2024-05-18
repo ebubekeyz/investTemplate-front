@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { formatPrice } from '../utils/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeStatus } from '../features/package/packageSlice';
@@ -9,6 +9,7 @@ import { changeWithdrawStatus } from '../features/package/packageSlice';
 import BarCharts from './BarCharts';
 import moment from 'moment';
 import PieCharts from './PieCharts';
+import { toast } from 'react-toastify';
 
 const DashboardCol1 = () => {
   const balance = useSelector((state) => state.packageState.balance);
@@ -18,14 +19,21 @@ const DashboardCol1 = () => {
   const withdrawAmount = useSelector(
     (state) => state.packageState.withdrawAmount
   );
+  const nav = useNavigate();
 
   const [prof, setProf] = useState(profit);
 
   const dispatch = useDispatch();
 
   const handleUpgrade = () => {
-    dispatch(changeStatus());
-    dispatch(changeWithdrawStatus());
+    if (balance === 0) {
+      dispatch(changeStatus());
+      dispatch(changeWithdrawStatus());
+      return nav('/pricing');
+    } else if (balance > 0) {
+      toast.warn('You must withdraw before you upgrade');
+      return nav('/withdraw');
+    }
   };
 
   return (

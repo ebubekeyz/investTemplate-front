@@ -50,12 +50,12 @@ const DashboardCol2 = () => {
 
         <div className="flex-col lg:flex gap-5">
           {Object.values(referrals).map((item) => {
-            const { updatedAt } = item;
+            const { createdAt } = item;
             return (
               <div className="flex gap-x-5 items-center">
                 <span className="text-orange-600">Joined:</span>
                 <div className="rounded-full bg-green-600 h-3 w-3"></div>
-                {moment(updatedAt).calendar()}
+                {moment(createdAt).calendar()}
               </div>
             );
           })}
