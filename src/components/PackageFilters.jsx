@@ -16,16 +16,8 @@ const PackageFilters = () => {
 
       <FormSelect
         label="sort by"
-        name="packagePlan"
-        list={[
-          '',
-          'T-H1 Plan',
-          'T-H2 Plan',
-          'T-H3 Plan',
-          'T-H4 Plan',
-          'T-H STAKE1 Plan',
-          'T-H STAKE2 Plan',
-        ]}
+        name="plan"
+        list={['', 'T-H1', 'T-H2', 'T-H3', 'T-H4', 'T-H', 'T-H']}
         size="select-sm"
       />
 

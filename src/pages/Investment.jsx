@@ -10,15 +10,9 @@ import {
 import { redirect, useLoaderData } from 'react-router-dom';
 
 const investmentQuery = (queryParams, id, token) => {
-  const { date, amount, packagePlan, page } = queryParams;
+  const { date, amount, plan, page } = queryParams;
   return {
-    queryKey: [
-      'Investment',
-      date ?? '',
-      amount ?? '',
-      packagePlan ?? '',
-      page ?? 1,
-    ],
+    queryKey: ['Investment', date ?? '', amount ?? '', plan ?? '', page ?? 1],
     queryFn: () =>
       customFetch(`/package?status=paid`, {
         params: queryParams,

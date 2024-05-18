@@ -41,7 +41,7 @@ const DashboardCol1 = () => {
       dispatch(changeWithdrawStatus());
       return nav('/pricing');
     } else if (balance > 0) {
-      toast.warn('You must withdraw before you upgrade');
+      toast.warn('Account balance must me empty before you withdraw');
       return null;
     }
   };
@@ -66,6 +66,17 @@ const DashboardCol1 = () => {
         <h1 className="font-medium tracking-wide capitalize text-lg">
           Account Balance
         </h1>
+
+        {profit === true ? (
+          <button
+            onClick={handleReinvest}
+            className="btn btn-xs btn-info animate-pulse"
+          >
+            Reinvest
+          </button>
+        ) : (
+          ''
+        )}
 
         {profit === true ? (
           <button
