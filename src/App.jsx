@@ -148,17 +148,13 @@ const App = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userState.user);
 
-  const autoRender = () => {
+  useEffect(() => {
     dispatch(loadPackage());
     dispatch(loadReferral());
     dispatch(loadWithdraw());
     dispatch(updateBalance());
     dispatch(packageCalculations());
-  };
-
-  useEffect(() => {
-    autoRender();
-  }, [autoRender]);
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
