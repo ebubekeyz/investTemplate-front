@@ -5,14 +5,12 @@ import { useSelector } from 'react-redux';
 import { LuBadgeCheck } from 'react-icons/lu';
 import { FaCheck, FaIdBadge } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 const Pricing = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
   const packed = useSelector((state) => state.packageState.package);
-  const profit = useSelector((state) => state.packageState.profit);
 
   const pack = [
     {
@@ -33,19 +31,9 @@ const Pricing = () => {
           percent: percent,
           days: days,
         };
-        const planFunc = Object.values(packed).filter((item1) => {
-          item1.package.filter((item2) => {
-            if (item2.plan === 'T-H1 Plan') {
-              toast.warn(
-                'Plan already exist, please upgrade to the next plan or reinvest your existing plan from your dashboard'
-              );
-              return null;
-            } else {
-              dispatch(addItem(pack));
-              nav('/pay');
-            }
-          });
-        });
+
+        dispatch(addItem(pack));
+        nav('/pay');
       },
       color:
         'h-[27.5rem] w-[95%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
@@ -68,19 +56,9 @@ const Pricing = () => {
           percent: percent,
           days: days,
         };
-        const planFunc = Object.values(packed).filter((item1) => {
-          item1.package.filter((item2) => {
-            if (item2.plan === 'T-H2 Plan') {
-              toast.warn(
-                'Plan already exist, please upgrade to the next plan or reinvest your existing plan from your dashboard'
-              );
-              return null;
-            } else if (item2.plan !== 'T-H2 Plan') {
-              dispatch(addItem(pack));
-              nav('/pay');
-            }
-          });
-        });
+
+        dispatch(addItem(pack));
+        nav('/pay');
       },
       color:
         'h-[30rem] w-[95%] rounded-xl grid bg-cyan-500 place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
@@ -104,19 +82,8 @@ const Pricing = () => {
           days: days,
         };
 
-        const planFunc = Object.values(packed).filter((item1) => {
-          item1.package.filter((item2) => {
-            if (item2.plan === 'T-H3 Plan') {
-              toast.warn(
-                'Plan already exist, please upgrade to the next plan or reinvest your existing plan from your dashboard'
-              );
-              return null;
-            } else {
-              dispatch(addItem(pack));
-              nav('/pay');
-            }
-          });
-        });
+        dispatch(addItem(pack));
+        nav('/pay');
       },
       color:
         'h-[27.5rem] w-[95%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
@@ -128,7 +95,7 @@ const Pricing = () => {
       amount: 20500,
       max: 40000,
       percent: 24,
-      duration: '96Hrs',
+      durtion: '96Hrs',
       days: 4,
       badge: 'text-5xl text-cyan-400',
       handle: (plan, amount, max, percent, days) => {
@@ -139,19 +106,9 @@ const Pricing = () => {
           percent: percent,
           days: days,
         };
-        const planFunc = Object.values(packed).filter((item1) => {
-          item1.package.filter((item2) => {
-            if (item2.plan === 'T-H4 Plan') {
-              toast.warn(
-                'Plan already exist, please upgrade to the next plan or reinvest your existing plan from your dashboard'
-              );
-              return null;
-            } else {
-              dispatch(addItem(pack));
-              nav('/pay');
-            }
-          });
-        });
+
+        dispatch(addItem(pack));
+        nav('/pay');
       },
       color:
         'h-[27.5rem] w-[95%] rounded-xl grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',
@@ -173,19 +130,9 @@ const Pricing = () => {
           percent: percent,
           days: days,
         };
-        const planFunc = Object.values(packed).filter((item1) => {
-          item1.package.filter((item2) => {
-            if (item2.plan === 'T-H STAKE1 Plan') {
-              toast.warn(
-                'Plan already exist, please upgrade to the next plan or reinvest your existing plan from your dashboard'
-              );
-              return null;
-            } else {
-              dispatch(addItem(pack));
-              nav('/pay');
-            }
-          });
-        });
+
+        dispatch(addItem(pack));
+        nav('/pay');
       },
       color:
         'h-[30rem] w-[95%] rounded-xl bg-cyan-500 grid place-items-center shadow-lg card hover:scale-110 transition duration-200 py-8',

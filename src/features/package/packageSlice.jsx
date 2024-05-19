@@ -60,6 +60,7 @@ export const reinvestFunc = createAsyncThunk(
         },
       });
       thunkAPI.dispatch(addItem(resp.data.attributes));
+
       toast.success('You have successfully reinvested');
     } catch (error) {
       return thunkAPI.rejectWithValue('Something went wrong');
@@ -220,6 +221,7 @@ const packageSlice = createSlice({
       state.referral = action.payload;
       localStorage.setItem('referral', JSON.stringify(state.referral)) || null;
     },
+
     calculateReferral: (state) => {
       const referral = Object.values(
         JSON.parse(localStorage.getItem('referral'))
